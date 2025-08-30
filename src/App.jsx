@@ -3,6 +3,7 @@ import { PROFILE, EXPERIENCE, PROJECTS } from './data/resumeData';
 import RecruiterView from './components/views/RecruiterView';
 import AIMLView from './components/views/AIMLView';
 import BackendView from './components/views/BackendView';
+import InnovatorView from './components/views/InnovatorView';
 import NetflixIntro from './scenes/NetflixIntro';
 import ProfileSelector from './scenes/ProfileSelector';
 import Navbar from './components/layout/Navbar';
@@ -34,7 +35,7 @@ export default function App() {
   useEffect(() => {
     if (animationStep !== 'content' || !window.gsap) return;
 
-    // A little extra CSS for the pipeline and architecture views
+    // A little extra CSS for the views
     const style = document.createElement('style');
     style.innerHTML = `
         .pipeline-step, .arch-box { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px; border-radius: 8px; background-color: rgba(120, 113, 108, 0.1); border: 1px solid rgba(120, 113, 108, 0.2); }
@@ -46,6 +47,8 @@ export default function App() {
         .arch-box.arch-service { border-color: rgba(52, 211, 153, 0.4); }
         .arch-box.arch-broker { border-color: rgba(251, 146, 60, 0.4); }
         .arch-box.arch-cache { border-color: rgba(96, 165, 250, 0.4); }
+        .case-study-card { padding: 1.5rem; border-radius: 0.75rem; background-color: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.05); }
+        .dark .case-study-card { background-color: rgba(39, 39, 42, 0.3); border: 1px solid rgba(255,255,255,0.1); }
     `;
     document.head.appendChild(style);
 
@@ -71,6 +74,8 @@ export default function App() {
             return <AIMLView profile={PROFILE} projects={PROJECTS} />;
         case 'backend':
             return <BackendView profile={PROFILE} experience={EXPERIENCE} />;
+        case 'innovator':
+            return <InnovatorView projects={PROJECTS} />;
         default:
             return <div className="text-center py-20 text-white">This profile view is under construction. Please select another profile.</div>;
     }

@@ -40,4 +40,16 @@ export const ZapIcon = (props) => (
 export const DatabaseIcon = (props) => (
     <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
 );
+export const LightbulbIcon = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18h6v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-2z"/><path d="M12 2a7 7 0 0 1 5 12.37V18H7v-3.63A7 7 0 0 1 12 2z"/></svg>
+);
+export const TargetIcon = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12"cy="12" r="2"/></svg>
+);
+export const SparklesIcon = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L9 9l-7 3 7 3 3 7 3-7 7-3-7-3-3-7z"/><path d="M22 12l-3 3 3 3-3-3zM5 12l-3 3 3 3-3-3z"/></svg>
+);
+export const RocketIcon = (props) => (
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.3.05-3.11.63-.42 1.37-.24 2.06.31 1.05.86 2.43 1.2 3.88 1.03l4.46-4.46c.32-.32.61-.71.82-1.14.21-.43.33-.9.33-1.39 0-.91-.39-1.79-1.03-2.43s-1.52-1.03-2.43-1.03c-.49 0-.96.12-1.39.33-.43.21-.82.5-1.14.82L10.3 9.4c-.17 1.45.17 2.83 1.03 3.88.55.69 1.48.97 2.06.31-.81.65-2.27.14-3.11z"/></svg>
+);
 
