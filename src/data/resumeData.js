@@ -10,6 +10,13 @@ export const PROFILE = {
   linkedin: "linkedin.com/in/divyesh-vishwakarma-621197175",
   summary:
     "Software engineer with 3.5 years of experience shipping production AI and cloud back-ends. Highlights include a high-throughput LLM+OCR service, a naval demand-forecasting engine that reduced stock-outs, and an Agentic-AI tool that reviews 60k medical pages in 30 minutes. Expert in Python, FastAPI, Docker, and full-cycle MLOps across AWS, Azure, and GCP.",
+  coreSkills: {
+    "Languages/Libraries": ["Python", "C#", "SQL", "Pandas", "NumPy", "PyTorch", "TensorFlow"],
+    "GenAI/NLP": ["GPT-4o", "Azure OpenAI", "BERT", "LangChain", "LlamaIndex", "Agentic AI"],
+    "Data/ML": ["Time-Series (ARIMA, Prophet)", "XGBoost", "Scikit-learn", "MLflow"],
+    "API/Backend": ["FastAPI", "Flask", "Django", "ASP.NET Core", "gRPC", "Kafka", "RabbitMQ"],
+    "Cloud/DevOps": ["AWS (ECS, S3)", "Azure (AKS, App Service)", "GCP (Vertex AI)", "Docker", "Terraform", "Helm"],
+  },
 };
 
 // --- EXPERIENCE DATA ---
@@ -74,3 +81,4 @@ export const PROFILES = [
     { id: 'innovator', name: 'Innovator', icon: '💡', color: 'bg-yellow-500' },
     { id: 'opensource', name: 'Open Source', icon: '🌍', color: 'bg-green-500' },
 ];
+
