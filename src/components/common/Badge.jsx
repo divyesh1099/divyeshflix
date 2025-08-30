@@ -1,9 +1,12 @@
 import React from 'react';
 
-const Badge = ({ children }) => (
-  <span className="inline-flex items-center rounded-md bg-rose-100 dark:bg-rose-500/20 px-2 py-1 text-xs font-medium text-rose-800 dark:text-rose-300">
-    {children}
-  </span>
-);
+const Badge = ({ children, className = '' }) => {
+  return (
+    <span className={`inline-flex items-center rounded-full border border-zinc-300 dark:border-zinc-700/60 px-2 py-0.5 text-[10px] uppercase tracking-wide text-zinc-700 dark:text-zinc-300 ${className}`}>
+      {children}
+    </span>
+  );
+};
 
 export default Badge;
+

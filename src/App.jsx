@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { PROFILE, EXPERIENCE, PROJECTS } from './data/resumeData';
+import { PROFILE, EXPERIENCE, PROJECTS, OPEN_SOURCE } from './data/resumeData';
 import RecruiterView from './components/views/RecruiterView';
 import AIMLView from './components/views/AIMLView';
 import BackendView from './components/views/BackendView';
 import InnovatorView from './components/views/InnovatorView';
+import OpenSourceView from './components/views/OpenSourceView';
 import NetflixIntro from './scenes/NetflixIntro';
 import ProfileSelector from './scenes/ProfileSelector';
 import Navbar from './components/layout/Navbar';
@@ -49,6 +50,8 @@ export default function App() {
         .arch-box.arch-cache { border-color: rgba(96, 165, 250, 0.4); }
         .case-study-card { padding: 1.5rem; border-radius: 0.75rem; background-color: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.05); }
         .dark .case-study-card { background-color: rgba(39, 39, 42, 0.3); border: 1px solid rgba(255,255,255,0.1); }
+        .contrib-cell { animation: cell-fade-in 0.5s ease-out forwards; animation-delay: var(--delay); opacity: 0; }
+        @keyframes cell-fade-in { to { opacity: 1; } }
     `;
     document.head.appendChild(style);
 
@@ -76,6 +79,8 @@ export default function App() {
             return <BackendView profile={PROFILE} experience={EXPERIENCE} />;
         case 'innovator':
             return <InnovatorView projects={PROJECTS} />;
+        case 'opensource':
+            return <OpenSourceView profile={PROFILE} openSource={OPEN_SOURCE} />;
         default:
             return <div className="text-center py-20 text-white">This profile view is under construction. Please select another profile.</div>;
     }

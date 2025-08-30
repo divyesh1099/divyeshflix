@@ -1,49 +1,78 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import * as THREE from 'three';
 
 const ThreeJSBackground = () => {
     const mountRef = useRef(null);
+
     useEffect(() => {
-        if (!window.THREE) return; 
+        const currentMount = mountRef.current;
 
-        const scene = new window.THREE.Scene();
-        const camera = new window.THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new window.THREE.WebGLRenderer({ canvas: mountRef.current, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        // Scene, Camera, Renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+        currentMount.appendChild(renderer.domElement);
 
-        const geometry = new window.THREE.TorusKnotGeometry(10, 3, 100, 16);
-        const material = new window.THREE.MeshStandardMaterial({ color: 0xff0000, wireframe: true, roughness: 0.5 });
-        const torusKnot = new window.THREE.Mesh(geometry, material);
-        torusKnot.position.z = -30;
-        scene.add(torusKnot);
-
-        const light = new window.THREE.PointLight(0xffffff, 1, 100);
-        light.position.set(10, 10, -10);
-        scene.add(light);
+        // Particles
+        const particlesCount = 5000;
+        const positions = new Float32Array(particlesCount * 3);
+        for (let i = 0; i < particlesCount * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 10;
+        }
+        const particlesGeometry = new THREE.BufferGeometry();
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.005,
+            color: 0xffffff
+        });
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
         
-        const ambientLight = new window.THREE.AmbientLight(0x404040, 2);
-        scene.add(ambientLight);
-
         camera.position.z = 5;
 
+        // Mouse move listener
+        let mouseX = 0;
+        let mouseY = 0;
+        const handleMouseMove = (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+
+        // Animation loop
         const animate = () => {
             requestAnimationFrame(animate);
-            torusKnot.rotation.x += 0.001;
-            torusKnot.rotation.y += 0.001;
+            particles.rotation.y += 0.0001;
+            particles.rotation.x += 0.0002;
+
+            // Make camera react to mouse movement
+            camera.position.x += (mouseX * 0.1 - camera.position.x) * 0.02;
+            camera.position.y += (mouseY * 0.1 - camera.position.y) * 0.02;
+            camera.lookAt(scene.position);
+
             renderer.render(scene, camera);
         };
         animate();
 
+        // Handle resize
         const handleResize = () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
             camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
+            renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+        };
         window.addEventListener('resize', handleResize);
 
-        return () => window.removeEventListener('resize', handleResize);
+        // Cleanup
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('resize', handleResize);
+            currentMount.removeChild(renderer.domElement);
+        };
     }, []);
 
-    return <canvas ref={mountRef} className="fixed top-0 left-0 -z-10" />;
+    return <div ref={mountRef} className="fixed top-0 left-0 w-full h-full -z-10" />;
 };
 
 export default ThreeJSBackground;
+

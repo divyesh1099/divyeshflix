@@ -1,31 +1,33 @@
 import { useState, useEffect } from 'react';
 
-/**
- * A custom React hook to manage and persist a dark/light theme.
- * @param {boolean} defaultDark - Whether the default theme should be dark.
- * @returns {{dark: boolean, setDark: Function}} - The current theme state and a function to update it.
- */
-export default function useDarkMode(defaultDark = true) {
+const useDarkMode = () => {
+  // Initialize state from localStorage or default to true (dark mode)
   const [dark, setDark] = useState(() => {
-    // Check for saved preference in localStorage first.
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme === 'dark';
+    try {
+      const item = window.localStorage.getItem('darkMode');
+      return item ? JSON.parse(item) : true;
+    } catch (error) {
+      console.log(error);
+      return true;
     }
-    // Otherwise, use the default.
-    return defaultDark;
   });
 
+  // Effect to update localStorage and the class on the root element
   useEffect(() => {
-    const root = document.documentElement;
-    if (dark) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+    try {
+      window.localStorage.setItem('darkMode', JSON.stringify(dark));
+      if (dark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, [dark]);
 
   return { dark, setDark };
-}
+};
+
+export default useDarkMode;
+

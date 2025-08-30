@@ -1,31 +1,69 @@
 import React from 'react';
 
-const GlobalStyles = () => (
-  <style>{`
-    @keyframes netflix-intro {
-      0% { transform: scale(0.9); letter-spacing: 0.3em; opacity: 0; }
-      50% { transform: scale(1); letter-spacing: normal; opacity: 1; }
-      85% { transform: scale(1); letter-spacing: normal; opacity: 1; }
-      100% { transform: scale(30); opacity: 0; }
-    }
-    .netflix-intro-animation { animation: netflix-intro 4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-    .profile-selector { animation: fade-in 0.5s ease-out forwards; }
-    @keyframes fade-in { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-  `}</style>
-);
-
-const NetflixIntro = ({ name = "DIVYESHFLIX" }) => {
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black">
-      <GlobalStyles />
-      <h1
-        className="netflix-intro-animation text-6xl font-black uppercase text-red-600 md:text-9xl"
-        style={{ textShadow: '0 0 4px rgba(0,0,0,0.7)' }}
-      >
-        {name}
-      </h1>
-    </div>
-  );
+const NetflixIntro = () => {
+    return (
+        <div className="netflix-intro-container">
+            <div className="netflix-logo">
+                DIVYESHFLIX
+            </div>
+            <style>{`
+                .netflix-intro-container {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #000;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 100;
+                    animation: fade-out 0.5s 3.5s forwards;
+                }
+                .netflix-logo {
+                    color: #e50914;
+                    font-size: 5rem;
+                    font-weight: 800;
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                    animation: zoom-in 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+                    transform: scale(0.1);
+                    opacity: 0;
+                }
+                @keyframes zoom-in {
+                    0% {
+                        transform: scale(0.1);
+                        opacity: 0;
+                    }
+                    20% {
+                        opacity: 1;
+                    }
+                    50% {
+                        transform: scale(1);
+                    }
+                    90% {
+                        transform: scale(1);
+                    }
+                    100% {
+                        transform: scale(15);
+                        opacity: 0;
+                    }
+                }
+                @keyframes fade-out {
+                    to {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                }
+                @media (max-width: 768px) {
+                    .netflix-logo {
+                        font-size: 2.5rem;
+                    }
+                }
+            `}</style>
+        </div>
+    );
 };
 
 export default NetflixIntro;
+
