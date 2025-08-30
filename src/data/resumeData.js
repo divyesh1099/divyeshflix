@@ -7,7 +7,7 @@ export const PROFILE = {
   email: "divyesh1099@gmail.com",
   website: "divyeshvishwakarma.com",
   github: "github.com/divyesh1099",
-  linkedin: "linkedin.com/in/divyesh-vishwakarma-621197175",
+  linkedin: "linkedin.com/in/motidivya",
   summary:
     "GenAI-oriented Python Engineer with 3.5 years of experience shipping AI-driven products and cloud back-ends. Highlights include a high-throughput LLM+OCR service, a naval demand-forecasting engine that significantly reduced stock-outs, and FastPDF—an Agentic-AI tool that reviews 60k medical pages in 30 minutes. Expert in FastAPI, Kafka, Docker, Terraform, and the full MLOps lifecycle across AWS, Azure, and GCP.",
   coreSkills: {
@@ -22,7 +22,7 @@ export const PROFILE = {
 // --- EXPERIENCE DATA ---
 export const EXPERIENCE = [
   {
-    company: "Neural IT Pvt Ltd",
+    company: "MotiDivya (Self-employed)",
     role: "Senior Python / ML Engineer",
     location: "Navi Mumbai",
     period: "Apr 2024 – Present",
