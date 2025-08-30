@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PROFILE, EXPERIENCE, PROJECTS, OPEN_SOURCE } from './data/resumeData';
+import { PROFILE, EXPERIENCE, PROJECTS, LEADERSHIP_AND_COMMUNITY } from './data/resumeData';
 import RecruiterView from './components/views/RecruiterView';
 import AIMLView from './components/views/AIMLView';
 import BackendView from './components/views/BackendView';
@@ -10,6 +10,7 @@ import ProfileSelector from './scenes/ProfileSelector';
 import Navbar from './components/layout/Navbar';
 import ThreeJSBackground from './components/layout/ThreeJSBackground';
 import useDarkMode from './hooks/useDarkMode';
+import Footer from './components/layout/Footer'; // --- NEW: Import Footer
 
 export default function App() {
   const { dark, setDark } = useDarkMode();
@@ -80,7 +81,7 @@ export default function App() {
         case 'innovator':
             return <InnovatorView projects={PROJECTS} />;
         case 'opensource':
-            return <OpenSourceView profile={PROFILE} openSource={OPEN_SOURCE} />;
+            return <OpenSourceView profile={PROFILE} openSource={LEADERSHIP_AND_COMMUNITY} />;
         default:
             return <div className="text-center py-20 text-white">This profile view is under construction. Please select another profile.</div>;
     }
@@ -109,7 +110,8 @@ export default function App() {
       <main className="relative z-10">
         {renderContent()}
       </main>
+      {/* --- NEW: Render Footer on all views --- */}
+      <Footer links={PROFILE.links} />
     </div>
   );
 }
-
